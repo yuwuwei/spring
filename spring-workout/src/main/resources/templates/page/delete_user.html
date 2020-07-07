@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- scripts import -->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1-1/webjars-requirejs.js}"></script>
+<!-- style import -->
+<link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet" />
+<link th:href="@{/css/search.css}" rel="stylesheet" />
+
+<title>削除確認画面</title>
+
+</head>
+<body>
+<div class="page-header">
+<h1 class="text-center">削除確認画面</h1>
+</div>
+
+<div>
+  <span th:text="${resultTable.id}"></span>
+</div>
+<button id="addUserButton" type="button" onclick="location.href='/searchPage'" class="btn btn-success">戻る</button>
+<button id="addUserButton" type="button" onclick="location.href='/delete'" class="btn btn-success">削除</button>
+
+</body>
+</html>

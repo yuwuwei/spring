@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+body, html {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+    background-attachment: fixed;
+}
+
+.button-area {
+    text-align: center;
+}
+
+#logoutButton {
+    float: right;
+}
+
+.search-table {
+    text-align: center;
+}
+
+.alert {
+	text-align: center;
+}
+
+h1 {
+	font-weight: bold;
+}
+
+.inlineForm {
+	display: inline;
+}
+
+#searchCard {
+	max-width: 400px;
+}
+
+label {
+	font-weight: bold;
+}
