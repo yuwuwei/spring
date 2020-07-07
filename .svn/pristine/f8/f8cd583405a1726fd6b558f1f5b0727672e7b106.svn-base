@@ -1,0 +1,116 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- scripts import -->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1-1/webjars-requirejs.js}"></script>
+<!-- style import -->
+<link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet" />
+<link th:href="@{/css/search.css}" rel="stylesheet" />
+
+<title>検索画面</title>
+
+</head>
+<body>
+	<div class="page-header">
+		<h1 class="text-center">検索画面</h1>
+	</div>
+
+	    <!-- 更新成功メッセージ表示 -->
+    <div class="container">
+      <div class="alert alert-danger" role="alert" th:if="${resultMsg != null}">
+        <p th:text="${resultMsg}"></p>
+      </div>
+    </div>
+
+	<!-- 検索フォーム -->
+	<form action="#" th:action="@{/search}" th:object="${searchForm}" method="post">
+		<div class="container">
+			<div class="form-group row justify-content-center">
+				<table>
+					<tr>
+						<th>ID</th>
+						<td><input type="text" th:field="*{id}" class="form-control" th:errorclass="is-invalid">
+						<!-- フィールドエラー表示 -->
+							<div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="invalid-feedback"></div></td>
+					</tr>
+					<tr>
+						<th>名前</th>
+						<td><input type="text" th:field="*{name}" class="form-control" th:errorclass="is-invalid">
+						<!-- フィールドエラー表示 -->
+							<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div></td>
+					</tr>
+					<tr>
+						<th>カナ</th>
+						<td><input type="text" th:field="*{kana}" class="form-control" th:errorclass="is-invalid">
+						<!-- フィールドエラー表示 -->
+							<div th:if="${#fields.hasErrors('kana')}" th:errors="*{kana}" class="invalid-feedback"></div></td>
+					</tr>
+					<!-- 全フィールド未入力時エラー表示 -->
+          <tr th:if="${#fields.hasErrors('validNotNull')}">
+            <td></td>
+            <td>
+              <input type="hidden" th:field="*{validNotNull}" class="form-control" th:errorclass="is-invalid">
+              <div th:errors="*{validNotNull}" class="invalid-feedback"></div>
+            </td>
+          </tr>
+				</table>
+			</div>
+
+
+			<!-- ボタン群 -->
+			<div class="button-area">
+				<button id="searchButton" type="submit" class="btn btn-primary">検索</button>
+				<button id="addUserButton" type="button" onclick="location.href='/addUserPage'" class="btn btn-success">新規登録</button>
+				<button id="logoutButton" type="button" onclick="location.href='/logout'" class="btn btn-warning">ログアウト</button>
+			</div>
+		</div>
+	</form>
+
+	<!-- 検索失敗時メッセージ表示 -->
+	<div class="container">
+		<div class="alert alert-danger" role="alert" th:if="${msg != null}">
+			<p th:text="${msg}"></p>
+		</div>
+	</div>
+
+	<!-- 検索結果表示部 -->
+	<div class="container">
+		<table class="table table-bordered">
+			<thead class="thead-light">
+				<tr>
+					<th>ID</th>
+					<th>名前</th>
+					<th>カナ</th>
+					<th>生年月日</th>
+					<th>委員会</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tr th:each="record : ${result}" class="bg-light">
+				<td th:text="${record.id}"></td>
+				<td th:text="${record.name}"></td>
+				<td th:text="${record.kana}"></td>
+				<td th:text="${record.birth}"></td>
+				<td th:text="${record.club}"></td>
+				<td>
+					<!-- 更新用フォーム。ResultTableクラスのidフィールドに対象IDをセット。他フィールドはnullになる -->
+					<form action="#" th:action="@{/updateUserPage}" th:object="${resultTable}" method="post" id="updateUserForm">
+						<input type="hidden" name="id" th:value="${record.id}">
+<!-- 						<input type="hidden" name="name" th:value="${record.name}">
+						<input type="hidden" name="kana" th:value="${record.kana}">
+						<input type="hidden" name="birth" th:value="${record.birth}">
+						<input type="hidden" name="club" th:value="${record.club}"> -->
+						<button id="updateUserButton" form="updateUserForm" type="submit" class="btn btn-success">更新</button>
+					</form>
+					<!-- 削除用フォーム。ResultTableクラスのidフィールドに対象IDをセット。他フィールドはnullになる -->
+					<form action="#" th:action="@{/deleteUserPage}" th:object="${resultTable}" method="post" id="deleteUserForm">
+						<input type="hidden" name="id" th:value="${record.id}">
+						<button id="deleteUserButton" form="deleteUserForm" type="submit" class="btn btn-danger">削除</button>
+					</form>
+					<!-- 更新、削除フォーム用のsubmitボタン。フォーム内に置くと改行されるため外に配置。 -->
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
