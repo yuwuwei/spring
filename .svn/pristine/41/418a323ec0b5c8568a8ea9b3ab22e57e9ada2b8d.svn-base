@@ -1,0 +1,29 @@
+##############################
+# Formクラス名称定義
+# 各画面にて使用するFormクラスの名称を定義する。
+# Formクラスの名称は、実際のクラス名にかかわらず小文字で始める必要がある。
+##############################
+# ユーザマスタ
+# LoginForm
+# 項目名
+#loginForm:
+#  id: ユーザID
+#  password: パスワード
+
+#ログインフォーム
+loginForm.id=ユーザID
+loginForm.password=パスワード
+
+#検索フォーム
+searchForm.id=ID
+searchForm.name=名前
+searchForm.kana=カナ
+
+#新規登録入力フォーム
+addUserForm.id=ID
+addUserForm.password=パスワード
+addUserForm.rePassword=パスワード再入力
+addUserForm.name=名前
+addUserForm.kana=カナ
+addUserForm.birth=生年月日
+addUserForm.club=委員会
