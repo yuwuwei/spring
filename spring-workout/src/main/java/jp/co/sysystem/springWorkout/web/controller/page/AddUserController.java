@@ -19,7 +19,8 @@ import jp.co.sysystem.springWorkout.domain.table.User;
 import jp.co.sysystem.springWorkout.service.AddUserService;
 import jp.co.sysystem.springWorkout.util.MessageUtil;
 import jp.co.sysystem.springWorkout.web.form.AddUserForm;
-
+import jp.co.sysystem.springWorkout.web.form.group.AddUserIdGroup;
+import jp.co.sysystem.springWorkout.web.form.group.AddUserOtherGroup;
 import lombok.extern.slf4j.Slf4j;
 /**
  * 新規登録画面コントローラー
@@ -81,7 +82,8 @@ public class AddUserController {
    */
   @RequestMapping(value = ADD_USER_PROCESS_URL, method = RequestMethod.POST)
   public String processAdd(
-      @Validated @ModelAttribute AddUserForm form,
+      @Validated({AddUserIdGroup.class, AddUserOtherGroup.class})
+      @ModelAttribute AddUserForm form,
       BindingResult bindingResult,
       Model model) throws ParseException {
 
@@ -128,13 +130,17 @@ public class AddUserController {
    */
   @RequestMapping(value = ADD_USER_PROCESS_URL,params = "check" ,method = RequestMethod.POST)
   public String checkIdAddUser(
-      @Validated @ModelAttribute AddUserForm form,
+      @Validated(AddUserIdGroup.class)
+      @ModelAttribute AddUserForm form,
       BindingResult bindingResult,
       Model model) {
 
 
     // BeanValidationの結果確認
     if (bindingResult.hasErrors()) {
+      // 遷移先の新規登録画面で使用するFormを送信
+      model.addAttribute("addUserForm", form);
+      return ADD_USER_PAGE;
     }
 
     // ID入力欄が空の場合
