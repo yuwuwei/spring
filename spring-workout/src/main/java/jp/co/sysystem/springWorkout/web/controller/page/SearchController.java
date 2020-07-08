@@ -16,7 +16,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.sysystem.springWorkout.domain.table.ResultTable;
@@ -141,7 +140,7 @@ public class SearchController {
     SearchForm form = (SearchForm) session.getAttribute("searchForm");
 
     //ログイン画面からの遷移時などの初回表示用処理
-    if(form == null) {
+    if(form == null || ("".equals(form.getId()) && "".equals(form.getName()) && "".equals(form.getKana()))) {
       model.addAttribute("searchForm", new SearchForm());
       return SEARCH_PAGE;
     }
