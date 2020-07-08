@@ -1,1 +1,9 @@
-
+$(document).ready(function(){
+    $('#checkId').on("click",function(){
+        $('#passwordInput').prop("required",false);
+        $('#rePasswordInput').prop("required",false);
+        $('#nameInput').prop("required",false);
+        $('#kanaInput').prop("required",false);
+        $('#birthInput').prop("required",false);
+    });
+});
