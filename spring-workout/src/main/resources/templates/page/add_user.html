@@ -29,7 +29,7 @@
 
 	 <label class="col-sm-4">ID</label>
 	  <div class="col-sm-8">
-	   <input type="text"th:field="*{id}" class="form-control" th:errorclass="is-invalid" maxlength="5" required>
+	   <input type="text"th:field="*{id}" class="form-control" th:errorclass="is-invalid" maxlength="5">
      <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="invalid-feedback"></div>
 	  </div>
 
@@ -45,7 +45,7 @@
 
 		<label class="col-sm-4">パスワード :</label>
 		<div class="col-sm-8">
-		<input type="text"th:field="*{password}" class="form-control" th:errorclass="is-invalid" maxlength="8" required>
+		<input type="text"th:field="*{password}" class="form-control" th:errorclass="is-invalid" maxlength="8">
     <!-- フィールドエラー表示 -->
     <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
 	  </div>
@@ -54,7 +54,7 @@
 	<div class="form-group row justify-content-center">
 
 		<label class="col-sm-4">パスワード再入力 :</label>
-		<div class="col-sm-8"><input type="text" th:field="*{rePassword}" class="form-control" th:errorclass="is-invalid" maxlength="8" required>
+		<div class="col-sm-8"><input type="text" th:field="*{rePassword}" class="form-control" th:errorclass="is-invalid" maxlength="8">
 	    <!-- フィールドエラー表示 -->
 	    <div th:if="${#fields.hasErrors('rePassword')}" th:errors="*{rePassword}" class="invalid-feedback"></div>
 	  </div>
@@ -63,7 +63,7 @@
 	<div class="form-group row justify-content-center">
 
 		<label class="col-sm-4">名前 :</label>
-		<div class="col-sm-8"><input type="text"th:field="*{name}" class="form-control" th:errorclass="is-invalid" maxlength="40" required>
+		<div class="col-sm-8"><input type="text"th:field="*{name}" class="form-control" th:errorclass="is-invalid" maxlength="40">
 	    <!-- フィールドエラー表示 -->
 	    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
 		</div>
@@ -72,7 +72,7 @@
 	<div class="form-group row justify-content-center">
 
 		<label class="col-sm-4">カナ :</label>
-		<div class="col-sm-8"><input type="text"th:field="*{kana}" class="form-control" th:errorclass="is-invalid" maxlength="40" required>
+		<div class="col-sm-8"><input type="text"th:field="*{kana}" class="form-control" th:errorclass="is-invalid" maxlength="40">
 	    <!-- フィールドエラー表示 -->
 	    <div th:if="${#fields.hasErrors('kana')}" th:errors="*{kana}" class="invalid-feedback"></div>
 	  </div>
@@ -81,7 +81,7 @@
 	<div class="form-group row justify-content-center">
 
 		<label class="col-sm-4">生年月日 (yyyy/mm/dd) :</label>
-		<div class="col-sm-8"><input type="datetime" th:field="*{{birth}}" class="form-control" th:errorclass="is-invalid" required>
+		<div class="col-sm-8"><input type="datetime" th:field="*{{birth}}" class="form-control" th:errorclass="is-invalid">
 	    <!-- フィールドエラー表示 -->
 	    <div th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}" class="invalid-feedback"></div>
 	  </div>
