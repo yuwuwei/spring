@@ -6,4 +6,11 @@ $(document).ready(function(){
         $('#kanaInput').prop("required",false);
         $('#birthInput').prop("required",false);
     });
+    $('#register').on("click",function(){
+        $('#passwordInput').prop("required",true);
+        $('#rePasswordInput').prop("required",true);
+        $('#nameInput').prop("required",true);
+        $('#kanaInput').prop("required",true);
+        $('#birthInput').prop("required",true);
+    });
 });
