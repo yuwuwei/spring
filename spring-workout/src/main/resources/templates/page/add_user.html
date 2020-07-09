@@ -47,7 +47,7 @@
 
 		<label class="col-sm-4">パスワード :</label>
 		<div class="col-sm-8">
-		<input id="passwordInput" type="text"th:field="*{password}" class="form-control" th:errorclass="is-invalid" maxlength="8" required>
+		<input id="passwordInput" type="password"th:field="*{password}" class="form-control" th:errorclass="is-invalid" maxlength="8" required>
     <!-- フィールドエラー表示 -->
     <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
 	  </div>
@@ -56,7 +56,7 @@
 	<div class="form-group row justify-content-center">
 
 		<label class="col-sm-4">パスワード再入力 :</label>
-		<div class="col-sm-8"><input id="rePasswordInput" type="text" th:field="*{rePassword}" class="form-control" th:errorclass="is-invalid" maxlength="8" required>
+		<div class="col-sm-8"><input id="rePasswordInput" type="password" th:field="*{rePassword}" class="form-control" th:errorclass="is-invalid" maxlength="8" required>
 	    <!-- フィールドエラー表示 -->
 	    <div th:if="${#fields.hasErrors('rePassword')}" th:errors="*{rePassword}" class="invalid-feedback"></div>
 	  </div>
@@ -99,7 +99,7 @@
 
    </div>
 	<div class="button-area">
-	 <button type="submit" class="btn btn-success">登録します</button>
+	 <button id="register" type="submit" class="btn btn-success">登録します</button>
 	 <button type="button" onclick="location.href='/searchPage'" class="btn btn-warning">戻る</button>
 	</div>
 	</form>
