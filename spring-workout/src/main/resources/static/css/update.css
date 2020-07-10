@@ -61,3 +61,13 @@ body, html {
 .alert-danger.alert p {
 	margin-bottom: 0;
 }
+
+label {
+  font-weight: bold;
+  text-align :right;
+}
+
+th{
+  text-align :right;
+
+}

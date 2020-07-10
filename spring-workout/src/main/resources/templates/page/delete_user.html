@@ -23,50 +23,62 @@
       <h1>削除確認画面</h1>
       <form action="#" class="form-horizontal" th:action="@{/detele_exe}" th:object="${resultTable}" method="post"
       id="deleteUserForm" data-target="#modalForm">
-         <div class="form-group">
-            <label for="name" class="col-sm-2 control-label">ユーザーID:</label>
-             <div class="col-sm-10">
-              <p th:text="*{id}"></p>
+
+<table class="table">
+<thead class="thead-light">
+              <tr class="d-flex">
+              <th class="col-3">ユーザーID :</th>
+
+              <td class="col-9" th:text="*{id}">
                <input type="hidden" name="id" th:value="*{id}">
-              </div>
-        </div>
-        <div class="form-group">
-          <label for="name" class="col-sm-2 control-label">名前:</label>
-            <div class="col-sm-10">
-            <p th:text="*{name}"></p>
+               </td>
+               </tr>
+
+<tr class="d-flex">
+          <th class="col-3">名前 :</th>
+
+            <td class="col-9" th:text="*{name}">
              <input type="hidden" name="name" th:value="*{name}">
-            </div>
-        </div>
-        <div class="form-group">
-         <label for="name" class="col-sm-2 control-label">カナ:</label>
-          <div class="col-sm-10">
-          <p th:text="*{kana}"></p>
+             </td>
+</tr>
+<tr class="d-flex">
+         <th class="col-3">カナ :</th>
+
+          <td class="col-9" th:text="*{kana}">
            <input type="hidden" name="kana" th:value="*{kana}">
-          </div>
-        </div>
-        <div class="form-group">
-         <label for="name" class="col-sm-2 control-label">生年月日:</label>
-         <div class="col-sm-10">
-              <p th:text="*{{birth}}"></p>
+           </td>
+           </tr>
+
+<tr class="d-flex">
+         <th class="col-3">生年月日 :</th>
+
+              <td class="col-9" th:text="*{{birth}}">
               <input type="hidden" name="birth" th:value="*{{birth}}">
-          </div>
-        </div>
-        <div class="form-group">
-         <label for="name" class="col-sm-2 control-label">委員会:</label>
-         <div class="col-sm-10">
-              <p th:text="*{club}"></p>
+              </td>
+              </tr>
+
+<tr class="d-flex">
+         <th class="col-3">委員会 :</th>
+
+              <td class="col-9" th:text="*{club}">
               <input type="hidden" name="club" th:value="*{club}">
-          </div>
-        </div>
+              </td>
+              </tr>
+</thead>
+</table>
+
     </form>
-    </div>
+
       <!-- ボタン群 -->
     <div class="button-area">
 
     <!-- 確認ダイアログ起動ボタン(Bootstrap) -->
+    <div class="button-area text-right">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">
       削除
     </button>
+    <button type="button" onclick="location.href='/searchPage'" class="btn btn-secondary">戻る</button>
+    </div>
 
     <!-- 確認ダイアログ本体(Bootstrap) -->
     <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
@@ -89,7 +101,8 @@
       </div>
     </div>
 
-    <button type="button" onclick="location.href='/searchPage'" class="btn btn-secondary">戻る</button>
+
+    </div>
     </div>
   </main>
 

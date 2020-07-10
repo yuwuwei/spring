@@ -51,3 +51,8 @@ body, html {
 .form-horizontal button {
   margin-top: 10px;
 }
+
+th{
+  text-align :right;
+
+}
