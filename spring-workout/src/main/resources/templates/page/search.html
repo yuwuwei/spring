@@ -63,17 +63,19 @@
 					</div>
 				</div>
 
-			</div>
+
 
 
 			<!-- ボタン群 -->
 			<div class="button-area">
 				<button id="searchButton" type="submit" class="btn btn-primary">検索</button>
 				<button id="addUserButton" type="button"
-					onclick="location.href='/addUserPage'" class="btn btn-success">新規登録</button>
-				<button id="logoutButton" type="button"
-					onclick="location.href='/logout'" class="btn btn-warning">ログアウト</button>
+					onclick="location.href='/addUserPage'" class="btn btn-primary">新規登録</button>
 			</div>
+			</div>
+				<button id="logoutButton" type="button"
+					onclick="location.href='/logout'" class="btn btn-light">ログアウト</button>
+
 		</div>
 	</form>
 
@@ -117,12 +119,12 @@
 					<!-- 更新用フォーム。ResultTableクラスのidフィールドに対象IDをセット。他フィールドはnullになる -->
 					<form action="#" th:action="@{/updateUserPage}" th:object="${resultTable}" method="post" class="inlineForm">
 						<input type="hidden" name="id" th:value="${record.id}">
-						<button type="submit" class="btn btn-success">更新</button>
+						<button type="submit" class="btn btn-primary">更新</button>
 					</form>
 					<!-- 削除用フォーム。ResultTableクラスのidフィールドに対象IDをセット。他フィールドはnullになる -->
 					<form action="#" th:action="@{/deleteUserPage}" th:object="${resultTable}" method="post" class="inlineForm">
 						<input type="hidden" name="id" th:value="${record.id}">
-						<button type="submit" class="btn btn-danger">削除</button>
+						<button type="submit" class="btn btn-secondary">削除</button>
 					</form>
 				</td>
 			</tr>
