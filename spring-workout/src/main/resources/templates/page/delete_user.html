@@ -24,50 +24,40 @@
       <form action="#" class="form-horizontal" th:action="@{/detele_exe}" th:object="${resultTable}" method="post"
       id="deleteUserForm" data-target="#modalForm">
 
-<table class="table">
-<thead class="thead-light">
-              <tr class="d-flex">
-              <th class="col-3">ユーザーID :</th>
+				<table class="table">
+					<thead class="thead-light">
+						<tr class="d-flex">
+							<th class="col-3">ユーザーID :</th>
+							<td class="col-9" th:text="*{id}"></td>
+						</tr>
 
-              <td class="col-9" th:text="*{id}">
-               <input type="hidden" name="id" th:value="*{id}">
-               </td>
-               </tr>
+						<tr class="d-flex">
+							<th class="col-3">名前 :</th>
+							<td class="col-9" th:text="*{name}"></td>
+						</tr>
+						<tr class="d-flex">
+							<th class="col-3">カナ :</th>
+							<td class="col-9" th:text="*{kana}"></td>
+						</tr>
 
-<tr class="d-flex">
-          <th class="col-3">名前 :</th>
+						<tr class="d-flex">
+							<th class="col-3">生年月日 :</th>
+							<td class="col-9" th:text="*{{birth}}"></td>
+						</tr>
 
-            <td class="col-9" th:text="*{name}">
-             <input type="hidden" name="name" th:value="*{name}">
-             </td>
-</tr>
-<tr class="d-flex">
-         <th class="col-3">カナ :</th>
+						<tr class="d-flex">
+							<th class="col-3">委員会 :</th>
+							<td class="col-9" th:text="*{club}"></td>
+						</tr>
+					</thead>
+				</table>
 
-          <td class="col-9" th:text="*{kana}">
-           <input type="hidden" name="kana" th:value="*{kana}">
-           </td>
-           </tr>
-
-<tr class="d-flex">
-         <th class="col-3">生年月日 :</th>
-
-              <td class="col-9" th:text="*{{birth}}">
-              <input type="hidden" name="birth" th:value="*{{birth}}">
-              </td>
-              </tr>
-
-<tr class="d-flex">
-         <th class="col-3">委員会 :</th>
-
-              <td class="col-9" th:text="*{club}">
-              <input type="hidden" name="club" th:value="*{club}">
-              </td>
-              </tr>
-</thead>
-</table>
-
-    </form>
+				<input type="hidden" name="id" th:value="*{id}">
+        <input type="hidden" name="name" th:value="*{name}">
+        <input type="hidden" name="kana" th:value="*{kana}">
+        <input type="hidden" name="birth" th:value="*{{birth}}">
+        <input type="hidden" name="club" th:value="*{club}">
+      </form>
 
       <!-- ボタン群 -->
     <div class="button-area">
