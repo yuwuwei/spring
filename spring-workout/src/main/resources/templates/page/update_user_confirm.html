@@ -51,26 +51,11 @@
 					</thead>
 				</table>
 
-        <div class="text-right">
-				<button type="button" data-toggle="modal" data-target="#modalForm" class="btn btn-primary">更新</button>
-      <button type="submit" form="back" class="btn btn-secondary">戻る</button>
-      </div>
-
       <input type="hidden" name="id" th:value="*{id}">
       <input type="hidden" name="name" th:value="*{name}">
       <input type="hidden" name="kana" th:value="*{kana}">
       <input type="hidden" name="birth" th:value="*{{birth}}">
       <input type="hidden" name="club" th:value="*{club}">
-
-      </form>
-
-      <form id="back" action="#" th:action="@{/backUpdateUserPage}" th:object="${updateUserForm}" method="post">
-        <input type="hidden" name="id" th:value="*{id}">
-        <input type="hidden" name="name" th:value="*{name}">
-        <input type="hidden" name="kana" th:value="*{kana}">
-        <input type="hidden" name="birth" th:value="*{{birth}}">
-        <input type="hidden" name="club" th:value="*{club}">
-      </form>
 
       <!-- モーダルダイアログ -->
       <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
@@ -84,12 +69,30 @@
             </div>
             <div class="modal-body">更新しますか？</div>
             <div class="modal-footer">
-              <button type="submit"  form="execute"  class="btn btn-primary" name="yes">はい</button>
+              <button type="submit" class="btn btn-primary" name="yes">はい</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">いいえ</button>
             </div>
           </div>
         </div>
       </div>
+
+      </form>
+
+      <div class="text-right">
+      <button type="button" data-toggle="modal" data-target="#modalForm" class="btn btn-primary">更新</button>
+
+
+      <form id="back" action="#" th:action="@{/backUpdateUserPage}" th:object="${updateUserForm}" method="post">
+        <input type="hidden" name="id" th:value="*{id}">
+        <input type="hidden" name="name" th:value="*{name}">
+        <input type="hidden" name="kana" th:value="*{kana}">
+        <input type="hidden" name="birth" th:value="*{{birth}}">
+        <input type="hidden" name="club" th:value="*{club}">
+        <button type="submit" class="btn btn-secondary">戻る</button>
+      </form>
+      </div>
+
+
     </div>
   </main>
 </body>

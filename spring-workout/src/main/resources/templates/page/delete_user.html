@@ -57,10 +57,28 @@
         <input type="hidden" name="kana" th:value="*{kana}">
         <input type="hidden" name="birth" th:value="*{{birth}}">
         <input type="hidden" name="club" th:value="*{club}">
-      </form>
 
-      <!-- ボタン群 -->
-    <div class="button-area">
+		    <!-- 確認ダイアログ本体(Bootstrap) -->
+		    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+		      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+		        <div class="modal-content">
+		          <div class="modal-header">
+		            <h5 class="modal-title" id="label1">削除確認</h5>
+		            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		              <span aria-hidden="true">&times;</span>
+		            </button>
+		          </div>
+		          <div class="modal-body">
+		            <span th:text="#{question.delete}">メッセージ本文</span>
+		          </div>
+		          <div class="modal-footer">
+		            <button type="submit" class="btn btn-primary">はい</button>
+		            <button type="button" class="btn btn-secondary" data-dismiss="modal">いいえ</button>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+      </form>
 
     <!-- 確認ダイアログ起動ボタン(Bootstrap) -->
     <div class="button-area text-right">
@@ -70,29 +88,6 @@
     <button type="button" onclick="location.href='/searchPage'" class="btn btn-secondary">戻る</button>
     </div>
 
-    <!-- 確認ダイアログ本体(Bootstrap) -->
-    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="label1">削除確認</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <span th:text="#{question.delete}">メッセージ本文</span>
-          </div>
-          <div class="modal-footer">
-            <button form="deleteUserForm" type="submit" class="btn btn-primary">はい</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">いいえ</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    </div>
     </div>
   </main>
 
