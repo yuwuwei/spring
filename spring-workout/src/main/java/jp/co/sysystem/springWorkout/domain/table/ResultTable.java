@@ -29,4 +29,6 @@ public class ResultTable {
   private Date birth;
 
   private String club;
+
+  private int no;
 }
