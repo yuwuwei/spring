@@ -74,12 +74,12 @@
 			</div>
 			</div>
 				<button id="logoutButton" type="button"
-					onclick="location.href='/logout'" class="btn btn-light">ログアウト</button>
+					onclick="location.href='/logout'" class="btn btn-secondary">ログアウト</button>
 
 		</div>
 	</form>
 
-
+<div class="result-area">
   <!-- 新規登録、更新、削除成功時メッセージ表示 -->
   <div class="container">
     <div class="alert alert-success" role="alert" th:if="${resultMsg != null}">
@@ -130,5 +130,6 @@
 			</tr>
 		</table>
 	</div>
+</div>
 </body>
 </html>

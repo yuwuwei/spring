@@ -52,7 +52,7 @@ body, html {
   margin-top: 10px;
 }
 
-th{
+th {
   text-align :right;
-
+  width: 25%;
 }

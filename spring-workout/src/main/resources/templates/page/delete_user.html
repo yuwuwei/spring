@@ -26,28 +26,28 @@
 
 				<table class="table">
 					<thead class="thead-light">
-						<tr class="d-flex">
-							<th class="col-3">ユーザーID :</th>
-							<td class="col-9" th:text="*{id}"></td>
+						<tr>
+							<th>ユーザーID :</th>
+							<td th:text="*{id}"></td>
 						</tr>
 
-						<tr class="d-flex">
-							<th class="col-3">名前 :</th>
-							<td class="col-9" th:text="*{name}"></td>
+						<tr>
+							<th>名前 :</th>
+							<td th:text="*{name}"></td>
 						</tr>
-						<tr class="d-flex">
-							<th class="col-3">カナ :</th>
-							<td class="col-9" th:text="*{kana}"></td>
-						</tr>
-
-						<tr class="d-flex">
-							<th class="col-3">生年月日 :</th>
-							<td class="col-9" th:text="*{{birth}}"></td>
+						<tr>
+							<th>カナ :</th>
+							<td th:text="*{kana}"></td>
 						</tr>
 
-						<tr class="d-flex">
-							<th class="col-3">委員会 :</th>
-							<td class="col-9" th:text="*{club}"></td>
+						<tr>
+							<th>生年月日 :</th>
+							<td th:text="*{{birth}}"></td>
+						</tr>
+
+						<tr>
+							<th>委員会 :</th>
+							<td th:text="*{club}"></td>
 						</tr>
 					</thead>
 				</table>

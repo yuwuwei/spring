@@ -5,9 +5,9 @@ body, html {
     background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
 }
 
-th{
+th {
   text-align :right;
-
+  width: 25%;
 }
 
 /* 白地の部分(デザイン) */

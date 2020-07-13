@@ -38,3 +38,7 @@ h1 {
 label {
 	font-weight: bold;
 }
+
+.result-area {
+	margin-top: 3rem;
+}
