@@ -11,122 +11,134 @@
 
 </head>
 <body>
-	<div class="page-header">
-		<h1 class="text-center">検索画面</h1>
-	</div>
-
-	<h5 class="text-center">※前方一致で検索します</h5>
-
-
-	<!-- 検索フォーム -->
-	<form action="#" th:action="@{/search}" th:object="${searchForm}" method="post">
-		<div class="container">
-			<div class="card mx-auto p-3 bg-light" id="searchCard">
-
-				<div class="form-group row justify-content-center">
-					<label for="inputId" class="col-sm-2 col-form-label"> ID </label>
-					<div class="col-sm-8">
-						<input type="text" th:field="*{id}" class="form-control" th:errorclass="is-invalid"
-						  maxlength="5" id="inputId">
-						<!-- フィールドエラー表示 -->
-						<div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="invalid-feedback"></div>
-					</div>
-				</div>
-
-				<div class="form-group row justify-content-center">
-					<label for="inputName" class="col-sm-2 col-form-label"> 名前 </label>
-					<div class="col-sm-8">
-						<input type="text" th:field="*{name}" class="form-control" th:errorclass="is-invalid"
-              maxlength="40" id="inputName">
-						<!-- フィールドエラー表示 -->
-						<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="invalid-feedback"></div>
-					</div>
-				</div>
-
-				<div class="form-group row justify-content-center">
-					<label for="inputKana" class="col-sm-2 col-form-label"> カナ </label>
-					<div class="col-sm-8">
-						<input type="text" th:field="*{kana}" class="form-control" th:errorclass="is-invalid"
-						  maxlength="40" id="inputKana">
-						<!-- フィールドエラー表示 -->
-						<div th:if="${#fields.hasErrors('kana')}" th:errors="*{kana}" class="invalid-feedback"></div>
-					</div>
-				</div>
-
-				<!-- 全フィールド未入力時エラー表示 -->
-				<div th:if="${#fields.hasErrors('validNotNull')}" class="form-group row justify-content-center">
-					<label for="inputHidden" class="col-sm-2 col-form-label"> </label>
-					<div class="col-sm-8">
-						<input type="hidden" th:field="*{validNotNull}" class="form-control" th:errorclass="is-invalid"
-						  id="inputHidden">
-						<div th:errors="*{validNotNull}" class="invalid-feedback"></div>
-					</div>
-				</div>
-
-			</div>
-
-
-			<!-- ボタン群 -->
-			<div class="button-area">
-				<button id="searchButton" type="submit" class="btn btn-primary">検索</button>
-				<button id="addUserButton" type="button"
-					onclick="location.href='/addUserPage'" class="btn btn-success">新規登録</button>
-				<button id="logoutButton" type="button"
-					onclick="location.href='/logout'" class="btn btn-warning">ログアウト</button>
-			</div>
-		</div>
-	</form>
-
-
-  <!-- 新規登録、更新、削除成功時メッセージ表示 -->
-  <div class="container">
-    <div class="alert alert-success" role="alert" th:if="${resultMsg != null}">
-      <p th:text="${resultMsg}"></p>
+    <div class="page-header">
+        <h1 class="text-center">検索画面</h1>
     </div>
-  </div>
 
-	<!-- 検索失敗時メッセージ表示 -->
-	<div class="container">
-		<div class="alert alert-danger" role="alert" th:if="${msg != null}">
-			<p th:text="${msg}"></p>
-		</div>
-	</div>
+    <h5 class="text-center">※前方一致で検索します</h5>
 
 
-	<!-- 検索結果表示部 -->
-	<div class="container">
-		<table class="table table-bordered">
-			<thead class="thead-light">
-				<tr>
-					<th>ID</th>
-					<th>名前</th>
-					<th>カナ</th>
-					<th>生年月日</th>
-					<th>委員会</th>
-					<th>操作</th>
-				</tr>
-			</thead>
-			<tr th:each="record : ${result}" class="bg-light">
-				<td th:text="${record.id}"></td>
-				<td th:text="${record.name}"></td>
-				<td th:text="${record.kana}"></td>
-				<!-- Date型メンバのDateTimeFormatアノテーションのフォーマット有効にするために{}は二重にする -->
-				<td th:text="${{record.birth}}"></td>
-				<td th:text="${record.club}"></td>
-				<td>
-					<!-- 更新用フォーム。ResultTableクラスのidフィールドに対象IDをセット。他フィールドはnullになる -->
-					<form action="#" th:action="@{/updateUserPage}" th:object="${resultTable}" method="post" class="inlineForm">
-						<input type="hidden" name="id" th:value="${record.id}">
-						<button type="submit" class="btn btn-success">更新</button>
-					</form>
-					<!-- 削除用フォーム。ResultTableクラスのidフィールドに対象IDをセット。他フィールドはnullになる -->
-					<form action="#" th:action="@{/deleteUserPage}" th:object="${resultTable}" method="post" class="inlineForm">
-						<input type="hidden" name="id" th:value="${record.id}">
-						<button type="submit" class="btn btn-danger">削除</button>
-					</form>
-				</td>
-			</tr>
-		</table>
-	</div>
+    <!-- 検索フォーム -->
+    <form action="#" th:action="@{/search}" th:object="${searchForm}"
+        method="post">
+        <div class="container">
+            <div class="card mx-auto p-3 bg-light" id="searchCard">
+
+                <div class="form-group row justify-content-center">
+                    <label for="inputId" class="col-sm-2 col-form-label"> ID </label>
+                    <div class="col-sm-8">
+                        <input type="text" th:field="*{id}" class="form-control"
+                            th:errorclass="is-invalid" maxlength="5" id="inputId">
+                        <!-- フィールドエラー表示 -->
+                        <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}"
+                            class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="form-group row justify-content-center">
+                    <label for="inputName" class="col-sm-2 col-form-label"> 名前
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" th:field="*{name}" class="form-control"
+                            th:errorclass="is-invalid" maxlength="40" id="inputName">
+                        <!-- フィールドエラー表示 -->
+                        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                            class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                <div class="form-group row justify-content-center">
+                    <label for="inputKana" class="col-sm-2 col-form-label"> カナ
+                    </label>
+                    <div class="col-sm-8">
+                        <input type="text" th:field="*{kana}" class="form-control"
+                            th:errorclass="is-invalid" maxlength="40" id="inputKana">
+                        <!-- フィールドエラー表示 -->
+                        <div th:if="${#fields.hasErrors('kana')}" th:errors="*{kana}"
+                            class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+                <!-- 全フィールド未入力時エラー表示 -->
+                <div th:if="${#fields.hasErrors('validNotNull')}"
+                    class="form-group row justify-content-center">
+                    <label for="inputHidden" class="col-sm-2 col-form-label"> </label>
+                    <div class="col-sm-8">
+                        <input type="hidden" th:field="*{validNotNull}"
+                            class="form-control" th:errorclass="is-invalid" id="inputHidden">
+                        <div th:errors="*{validNotNull}" class="invalid-feedback"></div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- ボタン群 -->
+                <div class="button-area">
+                    <button id="searchButton" type="submit" class="btn btn-primary">検索</button>
+                    <button id="addUserButton" type="button"
+                        onclick="location.href='/addUserPage'" class="btn btn-primary">新規登録</button>
+                </div>
+            </div>
+            <button id="logoutButton" type="button"
+                onclick="location.href='/logout'" class="btn btn-secondary">ログアウト</button>
+
+        </div>
+    </form>
+
+    <div class="result-area">
+        <!-- 新規登録、更新、削除成功時メッセージ表示 -->
+        <div class="container">
+            <div class="alert alert-success" role="alert"
+                th:if="${resultMsg != null}">
+                <p th:text="${resultMsg}"></p>
+            </div>
+        </div>
+
+        <!-- 検索失敗時メッセージ表示 -->
+        <div class="container">
+            <div class="alert alert-danger" role="alert" th:if="${msg != null}">
+                <p th:text="${msg}"></p>
+            </div>
+        </div>
+
+
+        <!-- 検索結果表示部 -->
+        <div class="container">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>名前</th>
+                        <th>カナ</th>
+                        <th>生年月日</th>
+                        <th>委員会</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tr th:each="record : ${result}" class="bg-light">
+                    <td th:text="${record.id}"></td>
+                    <td th:text="${record.name}"></td>
+                    <td th:text="${record.kana}"></td>
+                    <!-- Date型メンバのDateTimeFormatアノテーションのフォーマット有効にするために{}は二重にする -->
+                    <td th:text="${{record.birth}}"></td>
+                    <td th:text="${record.club}"></td>
+                    <td>
+                        <!-- 更新用フォーム。ResultTableクラスのidフィールドに対象IDをセット。他フィールドはnullになる -->
+                        <form action="#" th:action="@{/updateUserPage}"
+                            th:object="${resultTable}" method="post" class="inlineForm">
+                            <input type="hidden" name="id" th:value="${record.id}">
+                            <button type="submit" class="btn btn-primary">更新</button>
+                        </form> <!-- 削除用フォーム。ResultTableクラスのidフィールドに対象IDをセット。他フィールドはnullになる -->
+                        <form action="#" th:action="@{/deleteUserPage}"
+                            th:object="${resultTable}" method="post" class="inlineForm">
+                            <input type="hidden" name="id" th:value="${record.id}">
+                            <button type="submit" class="btn btn-secondary">削除</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

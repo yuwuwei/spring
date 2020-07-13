@@ -23,7 +23,7 @@
             <!-- タグに指定されているrequiredはHTML5の入力チェック機能 -->
             <input type="text" th:field="*{id}" class="form-control" value="test" th:errorclass="is-invalid" required autofocus>
             <!-- フィールドの入力チェックエラー表示 -->
-						<div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="invalid-feedback"></div>
+            <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="invalid-feedback"></div>
             <div class="spaceheight">
               <span>パスワード</span>
             </div>
@@ -32,7 +32,7 @@
             <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
             <div class="pt10">
               <div class="push-btn">
-                <button id="loginButton" type="submit" class="btn btn-success">ログイン</button>
+                <button id="loginButton" type="submit" class="btn btn-primary">ログイン</button>
               </div>
             </div>
           </div>

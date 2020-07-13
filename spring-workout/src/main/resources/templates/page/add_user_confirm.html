@@ -12,47 +12,50 @@
 
 </head>
 <body>
-
-<div  class="page-header">
-<h1  class="text-center">入力確認します。</h1>
-</div>
+<main class="container">
 <div class="alert alert-danger" role="alert" th:if="${msg != null}">
 <p th:text="${msg}">
 </div>
 
+<div class="card card-container">
+<h1>入力確認します</h1>
 <div  class = "text-center">
 <div class="container table-container">
-<table border = "1" class="table table-bordered">
-<tr  class="bg-light">
-<th>ID</th>
+
+<table class="table table-bordered">
+<thead class="thead-light">
+<tr>
+<th>ID :</th>
 <td th:text="${addUserForm.id}"></td>
 </tr>
-<tr  class="bg-light">
-<th>パスワード</th>
+<tr>
+<th>パスワード :</th>
 <td>●●●●</td>
 </tr>
-<tr class="bg-light">
-<th>名前</th>
+<tr>
+<th>名前 :</th>
 <td th:text="${addUserForm.name}"></td>
 </tr>
-<tr class="bg-light">
-<th>カナ</th>
+<tr>
+<th>カナ :</th>
 <td th:text="${addUserForm.kana}"></td>
 </tr>
-<tr class="bg-light">
-<th>生年月日</th>
+<tr>
+<th>生年月日 :</th>
 <td th:text="${{addUserForm.birth}}" ></td>
 </tr>
-<tr class="bg-light">
-<th>委員会</th>
+<tr>
+<th>委員会 :</th>
 <td th:text="${addUserForm.club}"></td>
 </tr>
+</thead>
 </table>
+
 </div>
 <div class ="text-center">
-<table>
-<tr>
-<th>
+
+
+<div class="button-area text-right">
 
 <form action="#" th:action="@{/addUserConfirmPage}" th:object="${addUserForm}" method="post" data-target="#modalForm" >
 <input type="hidden" name="id" th:value="${addUserForm.id}">
@@ -85,9 +88,9 @@
  </div>
  </div>
 </form>
-</th>
-<th></th>
-<th>
+
+
+
 <form action="#" th:action="@{/addUserPage}" th:object="${addUserForm}" method="post" >
 <input type="hidden" name="id" th:value="${addUserForm.id}">
 <input type="hidden" name="password" th:value="${addUserForm.password}">
@@ -96,13 +99,15 @@
 <input type="hidden" name="kana" th:value="${addUserForm.kana}">
 <input type="hidden" name="birth" th:value="${{addUserForm.birth}}">
 <input type="hidden" name="club" th:value="${addUserForm.club}">
-<button type="submit"  class="btn btn-warning">戻る</button>
+<button type="submit"  class="btn btn-secondary">戻る</button>
 </form>
-</th>
-</tr>
-</table>
+
 </div>
 
 </div>
+
+</div>
+</div>
+</main>
 </body>
 </html>
