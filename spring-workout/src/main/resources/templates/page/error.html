@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>ERROR</title>
+</head>
+<body>
+<h1>Something went wrong! </h1>
+<h2>Our Engineers are on it</h2>
+<h3 th:text="'timestamp: ' + ${timestamp}"></h3>
+<h3 th:text="'status: ' + ${status}"></h3>
+<h3 th:text="'error: ' + ${error}"></h3>
+<h3 th:text="'path: ' + ${path}"></h3>
+<a href="/">Go Home</a>
+</body>
+</html>
