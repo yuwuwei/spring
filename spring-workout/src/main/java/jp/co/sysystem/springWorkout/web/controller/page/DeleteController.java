@@ -1,5 +1,7 @@
 package jp.co.sysystem.springWorkout.web.controller.page;
 
+import static jp.co.sysystem.springWorkout.web.controller.page.LoginController.*;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jp.co.sysystem.springWorkout.domain.table.ResultTable;
 import jp.co.sysystem.springWorkout.service.DeleteService;
 import jp.co.sysystem.springWorkout.util.MessageUtil;
+import jp.co.sysystem.springWorkout.web.form.LoginForm;
 import jp.co.sysystem.springWorkout.web.form.UpdateUserForm;
 
 @Controller
@@ -58,6 +61,12 @@ public class DeleteController {
   public String deleteUser(
       @ModelAttribute ResultTable rt, Model model) {
 
+    //セッションにログイン情報が無ければログインページへ遷移
+    if (session.getAttribute(AUTHENTICATED) == null) {
+      model.addAttribute("loginForm", new LoginForm());
+      return LOGIN_PAGE;
+    }
+
     //IDからデータを取得する
 
     ResultTable u = ds.checkDeleteUser(rt.getId());
@@ -72,7 +81,11 @@ public class DeleteController {
       @ModelAttribute ResultTable rt,RedirectAttributes redirectAttributes,
       Model model) {
 
-
+    //セッションにログイン情報が無ければログインページへ遷移
+    if (session.getAttribute(AUTHENTICATED) == null) {
+      model.addAttribute("loginForm", new LoginForm());
+      return LOGIN_PAGE;
+    }
 
     try {
 

@@ -1,6 +1,8 @@
 
 package jp.co.sysystem.springWorkout.web.controller.page;
 
+import static jp.co.sysystem.springWorkout.web.controller.page.LoginController.*;
+
 import java.text.ParseException;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jp.co.sysystem.springWorkout.service.AddUserConfirmService;
 import jp.co.sysystem.springWorkout.util.MessageUtil;
 import jp.co.sysystem.springWorkout.web.form.AddUserForm;
+import jp.co.sysystem.springWorkout.web.form.LoginForm;
 import lombok.extern.slf4j.Slf4j;
 /**
  * 新規登録確認画面コントローラー
@@ -68,6 +71,11 @@ public class AddUserConfirmController {
       RedirectAttributes redirectAttributes,
       Model model) throws ParseException {
 
+    //セッションにログイン情報が無ければログインページへ遷移
+    if (session.getAttribute(AUTHENTICATED) == null) {
+      model.addAttribute("loginForm", new LoginForm());
+      return LOGIN_PAGE;
+    }
 
     // BeanValidationの結果確認
     if (bindingResult.hasErrors()) {
@@ -124,6 +132,11 @@ public class AddUserConfirmController {
       BindingResult bindingResult,
       Model model){
 
+    //セッションにログイン情報が無ければログインページへ遷移
+    if (session.getAttribute(AUTHENTICATED) == null) {
+      model.addAttribute("loginForm", new LoginForm());
+      return LOGIN_PAGE;
+    }
 
     // BeanValidationの結果確認
     if (bindingResult.hasErrors()) {

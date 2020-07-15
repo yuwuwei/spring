@@ -1,6 +1,8 @@
 
 package jp.co.sysystem.springWorkout.web.controller.page;
 
+import static jp.co.sysystem.springWorkout.web.controller.page.LoginController.*;
+
 import java.text.ParseException;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +21,7 @@ import jp.co.sysystem.springWorkout.domain.table.User;
 import jp.co.sysystem.springWorkout.service.AddUserService;
 import jp.co.sysystem.springWorkout.util.MessageUtil;
 import jp.co.sysystem.springWorkout.web.form.AddUserForm;
+import jp.co.sysystem.springWorkout.web.form.LoginForm;
 import jp.co.sysystem.springWorkout.web.form.group.AddUserIdGroup;
 import jp.co.sysystem.springWorkout.web.form.group.AddUserOtherGroup;
 import lombok.extern.slf4j.Slf4j;
@@ -63,6 +66,12 @@ public class AddUserController {
   @RequestMapping(value = ADD_USER_URL, method = RequestMethod.GET)
   public String addUser(Model model) {
 
+    //セッションにログイン情報が無ければログインページへ遷移
+    if (session.getAttribute(AUTHENTICATED) == null) {
+      model.addAttribute("loginForm", new LoginForm());
+      return LOGIN_PAGE;
+    }
+
     // フォームを送信する。
     model.addAttribute("addUserForm",new AddUserForm());
 
@@ -86,6 +95,12 @@ public class AddUserController {
       @ModelAttribute AddUserForm form,
       BindingResult bindingResult,
       Model model) throws ParseException {
+
+    //セッションにログイン情報が無ければログインページへ遷移
+    if (session.getAttribute(AUTHENTICATED) == null) {
+      model.addAttribute("loginForm", new LoginForm());
+      return LOGIN_PAGE;
+    }
 
     // BeanValidationの結果確認
     if (bindingResult.hasErrors()) {
@@ -135,6 +150,11 @@ public class AddUserController {
       BindingResult bindingResult,
       Model model) {
 
+    //セッションにログイン情報が無ければログインページへ遷移
+    if (session.getAttribute(AUTHENTICATED) == null) {
+      model.addAttribute("loginForm", new LoginForm());
+      return LOGIN_PAGE;
+    }
 
     // BeanValidationの結果確認
     if (bindingResult.hasErrors()) {
