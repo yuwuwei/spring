@@ -110,6 +110,21 @@ public class AddUserController {
       return ADD_USER_PAGE;
     }
 
+    // 同一ID確認処理
+    User u =  adduser.checkId(form.getId());
+    if (u != null) {
+      // ユーザーデータが取得できた場合
+      if(u.getId().equals(form.getId())) {
+
+        // BindingResultへエラーメッセージを設定
+        msgutil.addBindingResultFieldError(bindingResult, "id", "dbacces.alreadyUse", "addUserForm.id");
+
+        // 新規登録画面で使用するFormを送信
+        model.addAttribute("addUserForm", form);
+        return ADD_USER_PAGE;
+      }
+    }
+
     // パスワードが一致しなかった場合
     if (!form.getPassword().equals(form.getRePassword())) {
 
