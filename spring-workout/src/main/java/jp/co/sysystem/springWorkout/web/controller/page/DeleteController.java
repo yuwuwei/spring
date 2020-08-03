@@ -8,13 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.sysystem.springWorkout.domain.table.ResultTable;
-import jp.co.sysystem.springWorkout.service.DeleteService;
+import jp.co.sysystem.springWorkout.service.UserDeleteService;
 import jp.co.sysystem.springWorkout.util.MessageUtil;
 import jp.co.sysystem.springWorkout.web.form.LoginForm;
 import jp.co.sysystem.springWorkout.web.form.UpdateUserForm;
@@ -30,13 +31,7 @@ public class DeleteController {
   public MessageUtil msgutil;
 
   @Autowired
-  public DeleteService ds;
-
-//  @Autowired
-//  public DeleteUserJooqRepository delete;
-
-  @Autowired
-  public DeleteService delete;
+  public UserDeleteService uds;
 
 
 /// URL定義
@@ -59,7 +54,9 @@ public class DeleteController {
    */
   @RequestMapping(value = DELETE_USER_URL, method = RequestMethod.POST)
   public String deleteUser(
-      @ModelAttribute ResultTable rt, Model model) {
+      @ModelAttribute UpdateUserForm form,
+      @ModelAttribute ResultTable rt, Model model)
+  {
 
     //セッションにログイン情報が無ければログインページへ遷移
     if (session.getAttribute(AUTHENTICATED) == null) {
@@ -68,17 +65,16 @@ public class DeleteController {
     }
 
     //IDからデータを取得する
+    String tgtId = rt.getId();
+    form = uds.checkDeleteUser(tgtId);
 
-    ResultTable u = ds.checkDeleteUser(rt.getId());
-
-    model.addAttribute("resultTable", u);
-    model.addAttribute("updateUserForm", new UpdateUserForm());
+    model.addAttribute("updateUserForm", form);
     return DELETE_USER_PAGE;
   }
 
   @RequestMapping(value = DELETE_EXE_URL, method = RequestMethod.POST)
   public String delete_exe(
-      @ModelAttribute ResultTable rt,RedirectAttributes redirectAttributes,
+      @ModelAttribute ResultTable rt,UpdateUserForm form,RedirectAttributes redirectAttributes,
       Model model) {
 
     //セッションにログイン情報が無ければログインページへ遷移
@@ -89,7 +85,7 @@ public class DeleteController {
 
     try {
 
-      delete.exeDeleteUser(rt.getId());
+      uds.exeDeleteUser(form.getId());
 
 
     }catch(Exception e) {
@@ -107,10 +103,6 @@ public class DeleteController {
     //削除実行の後に検索ページへ遷移する
     redirectAttributes.addFlashAttribute("status", "delete");
     return "redirect:" + SEARCH_FORM_URL;
-
-//    model.addAttribute("updateUserForm",form);
-//    model.addAttribute("searchForm", new SearchForm());
-//    return SEARCH_PAGE;
 
   }
 

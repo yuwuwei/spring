@@ -7,7 +7,7 @@ import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import jp.co.sysystem.springWorkout.domain.table.ResultTable;
+import jp.co.sysystem.springWorkout.web.form.UpdateUserForm;
 import lombok.NonNull;
 
 /**
@@ -26,19 +26,21 @@ public class DeleteUserJooqRepository {
 
   /**
    * ユーザーマスタとユーザーマスタ詳細を外部結合(本番では内部結合でもよい)
+   * 削除のため
    * ユーザーIDから検索
    * @param id
    * @return
    */
 
-  public ResultTable findById(@NonNull String id) {
-    ResultTable result = dsl.select()
+  public UpdateUserForm findById(@NonNull String id) {
+    UpdateUserForm form = dsl.select()
         .from(USER)
         .leftOuterJoin(USERDETAIL).on(USER.ID.eq(USERDETAIL.ID))
         .where(
             USER.ID.eq(id))
-        .fetchOneInto(ResultTable.class);
-   return result;
+        .forUpdate()
+        .fetchOneInto(UpdateUserForm.class);
+   return form;
   }
 
   /**
@@ -49,23 +51,25 @@ public class DeleteUserJooqRepository {
    * @return
    */
 
-  public int findById2(@NonNull String id){
+  public void userDelete(@NonNull String id){
 
-    int result = dsl.delete(USER)
+   dsl.delete(USER)
       .where(
           USER.ID.eq(id))
       .execute();
-  return result;
 
   }
-  public int findById3(@NonNull String id) {
+  public void userDetailDelete(@NonNull String id) {
 
-    int result = dsl.delete(USERDETAIL)
+    dsl.delete(USERDETAIL)
         .where(
             USERDETAIL.ID.eq(id))
         .execute();
-    return result;
+
     }
 
 
-}
+
+  }
+
+
